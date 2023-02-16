@@ -1,0 +1,28 @@
+version: "3"
+
+tasks:
+  kafka-prod:
+    cmds:
+      - go run kafka/prod/main.go
+    silent: true
+  kafka-cons:
+    cmds:
+      - go run kafka/cons/main.go
+    silent: true
+
+  # RabbitMQ
+
+  rabbit-prod:
+    cmds:
+      - go run rabbitMQ/prod/main.go
+    silent: true
+
+  rabbit-cons:
+    cmds:
+      - go run rabbitMQ/cons/main.go {{.CLI_ARGS}}
+    silent: true
+
+  rabbit-up:
+    cmds:
+      - docker-compose -f rabbitMQ/docker-compose.yml up
+    silent: true
